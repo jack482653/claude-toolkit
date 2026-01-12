@@ -2,17 +2,9 @@
 
 ## Skills (for Claude.ai)
 
-### Method 1: Copy-Paste (Recommended)
-
-1. Open the skill's `SKILL.md` file
-2. Copy its entire contents
-3. In Claude.ai, paste into project knowledge or conversation
-
-### Method 2: Upload as Project Knowledge
-
-1. Download the `SKILL.md` file
-2. Go to your Claude.ai project settings
-3. Upload the file to project knowledge
+1. Download the skill ZIP from the [releases page](https://github.com/jack482653/claude-toolkit/releases)
+2. Go to Claude.ai → Settings → Capabilities → Skills
+3. Upload the ZIP file
 
 ## Commands (for Claude Code)
 

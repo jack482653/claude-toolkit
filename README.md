@@ -27,8 +27,9 @@ Custom commands for Claude Code CLI:
 
 ### Using Skills in Claude.ai
 
-1. Copy the content from `SKILL.md` in the skill directory
-2. Paste it into your Claude.ai project knowledge or conversation
+1. Download the skill ZIP from [releases](https://github.com/jack482653/claude-toolkit/releases)
+2. Go to Claude.ai → Settings → Capabilities → Skills
+3. Upload the ZIP file
 
 ### Using Commands in Claude Code
 

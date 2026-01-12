@@ -17,20 +17,9 @@ This skill provides comprehensive SDKMAN! command references and best practices 
 
 ## Installation
 
-### Download Pre-built Skill
-
-Download the `.skill` file from the [releases page](https://github.com/jack482653/claude-toolkit/releases) and upload it to your Claude project.
-
-### Build from Source
-
-```bash
-# Navigate to the skill directory
-cd skills/sdkman
-
-# The SKILL.md file contains the complete skill definition
-# To package it (requires skill-creator tools):
-python3 /path/to/skill-creator/scripts/package_skill.py . ./dist
-```
+1. Download `sdkman.zip` from the [releases page](https://github.com/jack482653/claude-toolkit/releases)
+2. Go to Claude.ai → Settings → Capabilities → Skills
+3. Upload the ZIP file
 
 ## Usage
 

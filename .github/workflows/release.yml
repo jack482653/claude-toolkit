@@ -1,0 +1,43 @@
+name: Release Skills
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Package Skills
+        run: |
+          mkdir -p dist
+          for skill_dir in skills/*/; do
+            skill_name=$(basename "$skill_dir")
+            if [ -f "${skill_dir}SKILL.md" ]; then
+              # Create temp directory with skill name
+              mkdir -p "tmp/${skill_name}"
+              cp -r "${skill_dir}"* "tmp/${skill_name}/"
+              # Rename SKILL.md to Skill.md (official format)
+              if [ -f "tmp/${skill_name}/SKILL.md" ]; then
+                mv "tmp/${skill_name}/SKILL.md" "tmp/${skill_name}/Skill.md"
+              fi
+              # Create ZIP with correct structure
+              cd tmp
+              zip -r "../dist/${skill_name}.zip" "${skill_name}"
+              cd ..
+              rm -rf tmp
+            fi
+          done
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: dist/*.zip
+          generate_release_notes: true
