@@ -14,6 +14,7 @@ Custom skills that extend Claude's capabilities:
 |-------|-------------|
 | [SDKMAN](./skills/sdkman/) | SDK version management commands |
 | [Bilingual Translator](./skills/bilingual-translator/) | English to Traditional Chinese translation with side-by-side HTML output |
+| [Grafana](./skills/grafana/) | Dashboard management, metrics querying, and alert monitoring for Grafana v7.5 |
 
 ### Commands (for Claude Code)
 

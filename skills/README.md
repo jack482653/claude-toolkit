@@ -8,6 +8,7 @@ Custom skills for Claude.ai that extend Claude's capabilities in specific domain
 |-------|-------------|
 | [SDKMAN](./sdkman/) | SDK version management on Unix systems |
 | [Bilingual Translator](./bilingual-translator/) | English to Traditional Chinese with HTML output |
+| [Grafana](./grafana/) | Dashboard management, metrics querying, and alert monitoring |
 
 ## Usage
 
