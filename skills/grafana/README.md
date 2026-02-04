@@ -20,7 +20,8 @@ export GRAFANA_API_TOKEN="your_api_token_here"
 
 Generate datasources config:
 ```bash
-python3 ~/.grafana-skill/scripts/generate_datasources.py
+# The script is in the Grafana skill's references/ directory
+python3 /path/to/grafana-skill/references/generate_datasources.py
 ```
 
 This creates `~/.grafana-skill/config.json` with your Grafana datasources.
@@ -29,12 +30,13 @@ This creates `~/.grafana-skill/config.json` with your Grafana datasources.
 
 For metric discovery:
 ```bash
-bash ~/.grafana-skill/scripts/install_promcli.sh
+# The script is in the Grafana skill's references/ directory
+bash /path/to/grafana-skill/references/install_promcli.sh
 ```
 
 Or install manually:
 ```bash
-go install github.com/jack482653/prom-cli@latest
+npm install -g github:jack482653/prom-cli
 ```
 
 ## Features
@@ -78,12 +80,12 @@ Grafana 上有哪些 dashboard
 
 Query metrics:
 ```
-請幫我到 Grafana 查詢 SRE MIG Dashboard 各個 mig 的 instance 數量狀態
+請幫我到 Grafana 查詢 Instance Group Dashboard 各個 instance group 的 instance 數量狀態
 ```
 
 Time-series queries:
 ```
-使用 Grafana 查詢 BE worker 一天內不同的 region 的 QPS
+使用 Grafana 查詢服務一天內不同的 region 的 QPS
 ```
 
 ### Alert Management
@@ -102,7 +104,7 @@ View alert history:
 
 Export dashboard:
 ```
-匯出 SRE MIG Dashboard 的配置
+匯出 Instance Group Dashboard 的配置
 ```
 
 Create dashboard:
@@ -114,7 +116,7 @@ Create dashboard:
 
 Find available metrics:
 ```
-查詢有哪些與 worker 相關的 metrics
+查詢有哪些與服務相關的 metrics
 ```
 
 ## Output Formats
@@ -162,7 +164,7 @@ https://grafana.com/docs/grafana/v7.5/http_api/
 ### Config not found
 Run the datasource generation script:
 ```bash
-python3 ~/.grafana-skill/scripts/generate_datasources.py
+python3 /path/to/grafana-skill/references/generate_datasources.py
 ```
 
 ### Authentication errors
@@ -171,7 +173,7 @@ Update your API token in `~/.grafana-skill/config.json`
 ### prom-cli not found
 Install via the provided script:
 ```bash
-bash ~/.grafana-skill/scripts/install_promcli.sh
+bash /path/to/grafana-skill/references/install_promcli.sh
 ```
 
 ### No data returned
@@ -205,7 +207,7 @@ bash ~/.grafana-skill/scripts/install_promcli.sh
 **Response**: Alert status, conditions, recent history, and current metric values
 
 ### Example 4: Dashboard Export
-**Query**: "匯出 SRE Dashboard 的 JSON 配置"
+**Query**: "匯出 Monitoring Dashboard 的 JSON 配置"
 
 **Response**: Complete dashboard JSON saved to file
 

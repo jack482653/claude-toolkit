@@ -18,7 +18,7 @@ This skill enables comprehensive interaction with Grafana v7.5 instances, provid
 
 Trigger this skill when the user:
 - Asks about Grafana dashboards (e.g., "Grafana 上有哪些 dashboard")
-- Requests metric queries (e.g., "查詢 worker 的 QPS")
+- Requests metric queries (e.g., "查詢服務的 QPS")
 - Wants to view or manage alerts
 - Needs to explore available metrics
 - Requests dashboard creation or modification
@@ -83,11 +83,15 @@ Before using this skill:
    ```
 
 2. **Generate datasources configuration**:
+
+   The `generate_datasources.py` script is located in the Grafana skill's `references/` directory.
+   The skill location depends on where you installed it (user scope or project scope).
+
    ```bash
    # Generate default config.json
    export GRAFANA_URL="http://grafana.example.com"
    export GRAFANA_API_TOKEN="your_api_token"
-   python3 ~/.grafana-skill/scripts/generate_datasources.py
+   python3 /path/to/grafana-skill/references/generate_datasources.py
    ```
 
    **For multiple environments:**
@@ -96,13 +100,13 @@ Before using this skill:
    export GRAFANA_URL="http://grafana-prod.example.com"
    export GRAFANA_API_TOKEN="your_prod_token"
    export GRAFANA_ENV="prod"
-   python3 ~/.grafana-skill/scripts/generate_datasources.py
+   python3 /path/to/grafana-skill/references/generate_datasources.py
 
    # Generate config-staging.json
    export GRAFANA_URL="http://grafana-staging.example.com"
    export GRAFANA_API_TOKEN="your_staging_token"
    export GRAFANA_ENV="staging"
-   python3 ~/.grafana-skill/scripts/generate_datasources.py
+   python3 /path/to/grafana-skill/references/generate_datasources.py
    ```
 
    This script will:
@@ -490,13 +494,13 @@ history = manager.get_alert_history(hours=24)
 export GRAFANA_URL="http://grafana-prod.example.com"
 export GRAFANA_API_TOKEN="prod_token"
 export GRAFANA_ENV="prod"
-python3 ~/.grafana-skill/scripts/generate_datasources.py
+python3 /path/to/grafana-skill/references/generate_datasources.py
 
 # Setup staging environment
 export GRAFANA_URL="http://grafana-staging.example.com"
 export GRAFANA_API_TOKEN="staging_token"
 export GRAFANA_ENV="staging"
-python3 ~/.grafana-skill/scripts/generate_datasources.py
+python3 /path/to/grafana-skill/references/generate_datasources.py
 
 # Use production config
 export GRAFANA_ENV=prod
@@ -563,13 +567,13 @@ prom config "${PROM_URL}"
 prom targets
 
 # 3. Query instant value
-prom query "up{job=\"worker\"}"
+prom query "up{job=\"api\"}"
 
-# 4. Query time range for worker metrics
-prom query-range "rate(worker_requests_total[5m])" --start "24h" --end "now"
+# 4. Query time range for service metrics
+prom query-range "rate(http_requests_total[5m])" --start "24h" --end "now"
 
 # 5. Build complex query and execute via Grafana API
-QUERY='sum by (region) (rate(worker_requests_total[5m]))'
+QUERY='sum by (region) (rate(http_requests_total[5m]))'
 
 curl -X POST -H "Authorization: Bearer ${API_TOKEN}" \
   -H "Content-Type: application/json" \
@@ -641,7 +645,8 @@ Key endpoints:
 ```bash
 if [ ! -f ~/.grafana-skill/config.json ]; then
   echo "Config not found. Please set GRAFANA_URL and GRAFANA_API_TOKEN, then run:"
-  echo "python3 ~/.grafana-skill/scripts/generate_datasources.py"
+  echo "python3 /path/to/grafana-skill/references/generate_datasources.py"
+  echo "(Replace /path/to/grafana-skill with the actual path to your Grafana skill)"
 fi
 ```
 
